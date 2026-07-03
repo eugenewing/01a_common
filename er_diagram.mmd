@@ -1,0 +1,106 @@
+erDiagram
+    BUILDINGS ||--o{ ROOMS : "building_id"
+    ROOMS ||--o{ ITEMS : "current_room_id"
+    ITEM_TYPES ||--o{ ITEMS : "item_type_id"
+    MATERIALLY_RESPONSIBLE_PERSONS ||--o{ ITEMS : "responsible_person_id"
+    MANUFACTURERS ||--o{ MODELS : "manufacturer_id"
+    MANUFACTURERS ||--o{ ITEMS : "manufacturer_id"
+    MODELS ||--o{ ITEMS : "model_id"
+
+    ITEMS ||--o{ ITEM_MOVEMENTS : "item_id"
+    ROOMS ||--o{ ITEM_MOVEMENTS : "from_room_id"
+    ROOMS ||--o{ ITEM_MOVEMENTS : "to_room_id"
+
+    ITEMS ||--o{ ITEM_RELATIONS : "from_item_id"
+    ITEMS ||--o{ ITEM_RELATIONS : "to_item_id"
+    ITEM_RELATION_TYPES ||--o{ ITEM_RELATIONS : "relation_type_id"
+
+    USERS ||--o{ ITEM_MOVEMENTS : "moved_by"
+
+    BUILDINGS {
+        bigint id PK
+        varchar code
+        varchar name
+        varchar address
+        text description
+        boolean is_active
+    }
+
+    ROOMS {
+        bigint id PK
+        bigint building_id FK
+        varchar code "UK within building"
+        varchar name
+        boolean is_active
+    }
+
+    ITEM_TYPES {
+        bigint id PK
+        varchar code UK
+        varchar name
+    }
+
+    MATERIALLY_RESPONSIBLE_PERSONS {
+        bigint id PK
+        varchar full_name
+        varchar position
+        varchar phone
+        varchar email
+        text comment
+        boolean is_active
+    }
+
+    MANUFACTURERS {
+        bigint id PK
+        varchar name
+        text comment
+    }
+
+    MODELS {
+        bigint id PK
+        bigint manufacturer_id FK
+        varchar name
+        text comment
+    }
+
+    ITEMS {
+        bigint id PK
+        varchar inv_number
+        varchar inv_number_cit
+        varchar serial_number UK
+        varchar name
+        bigint item_type_id FK
+        bigint responsible_person_id FK
+        bigint manufacturer_id FK
+        bigint model_id FK
+        bigint current_room_id FK
+        text comment
+        boolean is_active
+    }
+
+    ITEM_MOVEMENTS {
+        bigint id PK
+        bigint item_id FK
+        bigint from_room_id FK
+        bigint to_room_id FK
+        bigint moved_by FK
+        timestamptz moved_at
+    }
+
+    ITEM_RELATION_TYPES {
+        bigint id PK
+        varchar code UK
+        varchar name
+        boolean is_bidirectional
+    }
+
+    ITEM_RELATIONS {
+        bigint id PK
+        bigint from_item_id FK
+        bigint to_item_id FK
+        bigint relation_type_id FK
+    }
+
+    USERS {
+        bigint id PK
+    }
