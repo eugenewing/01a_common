@@ -21,3 +21,4 @@ TickSenderApi.dll: TickSenderApi\
 --проект под IntelliJ Idea, аудит кода и встроенный maven
 --war на другом ПК в XAMPP
 лог, ini, зависимости
+дедупликация тиков
