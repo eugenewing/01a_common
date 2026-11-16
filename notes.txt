@@ -8,3 +8,6 @@ import java.util.logging.SimpleFormatter;
 <artifactId>ini4j</artifactId>
 <version>0.5.4</version>
 </dependency>
+
+mklink /d "F:\Program Files\qedit_uni\notes" "F:\Projects\psobb_qst_upgrade\notes"
+rmdir "F:\Program Files\qedit_uni\notes"
