@@ -9,5 +9,7 @@ import java.util.logging.SimpleFormatter;
 <version>0.5.4</version>
 </dependency>
 
+mklink /d "E:\Program Files\qedit_uni\notes" "E:\Projects\psobb_qst_upgrade\notes"
+rmdir "E:\Program Files\qedit_uni\notes"
 mklink /d "F:\Program Files\qedit_uni\notes" "F:\Projects\psobb_qst_upgrade\notes"
 rmdir "F:\Program Files\qedit_uni\notes"
